@@ -1,4 +1,5 @@
-import { createStore } from "vuex";
+import { InjectionKey } from "vue";
+import { createStore, Store } from "vuex";
 import { Stop, BusLines } from "@/types";
 import axios, { AxiosResponse } from "axios";
 
@@ -7,6 +8,7 @@ export interface State {
   selectedLine: number;
   selectedStop: string;
 }
+export const key: InjectionKey<Store<State>> = Symbol();
 export default createStore<State>({
   state: {
     busLines: {},

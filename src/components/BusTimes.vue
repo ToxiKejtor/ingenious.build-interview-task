@@ -1,5 +1,7 @@
-<script setup lang="ts"></script>
+<template>
+  <PlaceKeeper message="Please select the bus line first" />
+</template>
 
-<template></template>
-
-<style scoped></style>
+<script setup lang="ts">
+import PlaceKeeper from "@/components/PlaceKeeper.vue";
+</script>

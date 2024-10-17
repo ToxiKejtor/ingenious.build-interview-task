@@ -2,15 +2,28 @@
   <div class="container bg-white">
     <h2>Select Bus Line</h2>
     <BusLines />
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <BusStops />
+        </div>
+        <div class="col">
+          <BusTimes />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import BusLines from "@/components/BusLines.vue";
+import BusStops from "@/components/BusStops.vue";
+import BusTimes from "@/components/BusTimes.vue";
 import { onMounted } from "vue";
 import { useStore } from "vuex";
+import { key } from "@/store";
 
-const store = useStore();
+const store = useStore(key);
 
 onMounted(async () => {
   await store.dispatch("fetchStops");

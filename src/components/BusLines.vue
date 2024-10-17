@@ -17,8 +17,9 @@
 <script setup lang="ts">
 import { computed, onMounted } from "vue";
 import { useStore } from "vuex";
+import { key } from "@/store";
 
-const store = useStore();
+const store = useStore(key);
 
 const busLines = computed(() => store.state.busLines);
 const selectedLine = computed(() => store.state.selectedLine);
