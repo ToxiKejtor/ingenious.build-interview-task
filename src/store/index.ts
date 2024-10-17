@@ -4,15 +4,22 @@ import axios, { AxiosResponse } from "axios";
 
 export interface State {
   busLines: BusLines;
+  selectedLine: number;
+  selectedStop: string;
 }
 export default createStore<State>({
   state: {
     busLines: {},
+    selectedLine: 100,
+    selectedStop: "",
   },
   getters: {},
   mutations: {
     setBusLines(state: State, busLines: BusLines) {
       state.busLines = busLines;
+    },
+    setSelectedLine(state: State, line: number) {
+      state.selectedLine = line;
     },
   },
   actions: {
