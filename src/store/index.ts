@@ -23,10 +23,12 @@ export default createStore<State>({
     setSelectedLine(state: State, line: number) {
       state.selectedLine = line;
     },
+    setSelectedStop(state: State, stop: string) {
+      state.selectedStop = stop;
+    },
   },
   actions: {
     fetchStops({ commit, dispatch }) {
-      console.log("fetchStops");
       return axios
         .get("http://localhost:3000/stops")
         .then((response: AxiosResponse<Stop[]>) => {
