@@ -20,10 +20,9 @@ import BusLines from "@/components/BusLines.vue";
 import BusStops from "@/components/BusStops.vue";
 import BusTimes from "@/components/BusTimes.vue";
 import { onMounted } from "vue";
-import { useStore } from "vuex";
-import { key } from "@/store";
+import { useStore } from "@/store";
 
-const store = useStore(key);
+const store = useStore();
 
 onMounted(async () => {
   await store.dispatch("fetchStops");

@@ -1,5 +1,5 @@
 import { InjectionKey } from "vue";
-import { createStore, Store } from "vuex";
+import { createStore, useStore as baseUseStore, Store } from "vuex";
 import { Stop, BusLines } from "@/types";
 import axios, { AxiosResponse } from "axios";
 
@@ -12,7 +12,7 @@ export const key: InjectionKey<Store<State>> = Symbol();
 export default createStore<State>({
   state: {
     busLines: {},
-    selectedLine: 100,
+    selectedLine: 0,
     selectedStop: "",
   },
   getters: {},
@@ -26,6 +26,7 @@ export default createStore<State>({
   },
   actions: {
     fetchStops({ commit, dispatch }) {
+      console.log("fetchStops");
       return axios
         .get("http://localhost:3000/stops")
         .then((response: AxiosResponse<Stop[]>) => {
@@ -44,3 +45,7 @@ export default createStore<State>({
   },
   modules: {},
 });
+
+export function useStore() {
+  return baseUseStore(key);
+}
