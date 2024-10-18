@@ -6,7 +6,7 @@
 
         <button
           class="btn d-flex align-items-center border-none"
-          @click="sortAsc = !sortAsc"
+          @click="onSortClick"
         >
           <span>Bus Stops</span> <IconSort />
         </button>
@@ -33,22 +33,22 @@ import { useStore } from "@/store/store";
 
 import { computed, ref } from "vue";
 import IconSort from "@/components/IconSort.vue";
+import { MutationTypes } from "@/store/mutations";
 const store = useStore();
-
-const sortAsc = ref(true);
 
 const selectedStop = computed(() => store.state.selectedStop);
 const showTimes = computed(
   () => store.state.selectedStop !== "" && store.state.selectedLine
 );
-const times = computed(() => {
-  const times =
-    store.state.busLines[store.state.selectedLine][store.state.selectedStop];
-  return sortAsc.value ? times.sort() : times.sort().reverse();
-});
+const times = computed(() => store.getters.sortedTimes);
+const selectedTime = computed(() => store.state.selectedTime);
+
+function onSortClick() {
+  store.commit(MutationTypes.SET_TIMES_SORT_ASC, !store.state.timesSortAsc);
+}
 
 function onTimeClick(time: string) {
-  store.commit("setSelectedTime", time);
+  store.commit(MutationTypes.SET_SELECTED_TIME, time);
 }
 </script>
 <style scoped>

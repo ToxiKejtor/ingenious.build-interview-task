@@ -6,6 +6,7 @@ export interface State {
   selectedStop: string;
   selectedTime: string;
   stopsSortAsc: boolean;
+  timesSortAsc: boolean;
 }
 
 export const state: State = {
@@ -14,4 +15,5 @@ export const state: State = {
   selectedStop: "",
   selectedTime: "",
   stopsSortAsc: true,
+  timesSortAsc: true,
 };

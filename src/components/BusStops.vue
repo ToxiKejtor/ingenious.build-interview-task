@@ -5,7 +5,7 @@
 
       <button
         class="btn d-flex align-items-center border-none"
-        @click="sortAsc = !sortAsc"
+        @click="onSortClick"
       >
         <span>Bus Stops</span> <IconSort />
       </button>
@@ -26,7 +26,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed } from "vue";
 import PlaceKeeper from "@/components/PlaceKeeper.vue";
 import { useStore } from "@/store/store";
 import IconSort from "@/components/IconSort.vue";
@@ -34,20 +34,16 @@ import { MutationTypes } from "@/store/mutations";
 
 const store = useStore();
 
-const sortAsc = ref(true);
-
 const selectedLine = computed(() => store.state.selectedLine);
 const selectedStop = computed(() => store.state.selectedStop);
-const stops = computed(() =>
-  selectedLine.value
-    ? sortAsc.value
-      ? Object.keys(store.state.busLines[selectedLine.value]).sort()
-      : Object.keys(store.state.busLines[selectedLine.value]).sort().reverse()
-    : []
-);
+const stops = computed(() => store.getters.sortedStops);
 
 function onStopClick(stop: string) {
   store.commit(MutationTypes.SET_SELECTED_STOP, stop);
+}
+
+function onSortClick() {
+  store.commit(MutationTypes.SET_STOPS_SORT_ASC, !store.state.stopsSortAsc);
 }
 </script>
 <style scoped>
