@@ -1,6 +1,5 @@
 <template>
-  <div class="list-items">
-    <div>sortAsc: {{ sortAsc }}</div>
+  <div class="list-items rounded">
     <div v-if="props.searchable">
       <input
         type="text"

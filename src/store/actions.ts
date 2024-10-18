@@ -33,7 +33,7 @@ export interface Actions {
 }
 
 export const actions: ActionTree<State, State> & Actions = {
-  [ActionTypes.FETCH_STOPS]({ commit, dispatch }) {
+  [ActionTypes.FETCH_STOPS]({ dispatch }) {
     return axios
       .get("http://localhost:3000/stops")
       .then((response: AxiosResponse<Stop[]>) => {

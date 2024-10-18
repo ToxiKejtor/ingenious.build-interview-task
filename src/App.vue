@@ -1,8 +1,8 @@
 <template>
   <div class="bg-light vh-100">
-    <div class="container">
-      <h1>Timetable</h1>
-      <nav class="container-fluid bg-white">
+    <div class="app__container">
+      <h1 class="pb-3">Timetable</h1>
+      <nav class="px-4 bg-white">
         <ul class="list-unstyled d-flex">
           <li v-for="route in routes" :key="route.path">
             <RouterLink
@@ -31,3 +31,14 @@ onMounted(async () => {
   await store.dispatch(ActionTypes.FETCH_STOPS);
 });
 </script>
+<style scoped>
+.app__container {
+  padding: 40px 32px;
+}
+.app__title {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+  margin-bottom: 0;
+}
+</style>

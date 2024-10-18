@@ -8,7 +8,7 @@
       @item-selected="onTimeSelected"
     />
 
-    <PlaceKeeper v-else message="Please select the bus line first" />
+    <PlaceKeeper v-else message="Please select the bus stop first" />
   </div>
 </template>
 

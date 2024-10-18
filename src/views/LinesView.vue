@@ -1,8 +1,7 @@
 <template>
-  <div class="container bg-white">
-    <h2>Select Bus Line</h2>
+  <div>
     <BusLines />
-    <div class="container">
+    <div class="py-3">
       <div class="row">
         <div class="col">
           <BusStops />

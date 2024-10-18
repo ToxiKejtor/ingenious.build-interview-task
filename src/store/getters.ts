@@ -13,7 +13,7 @@ export const getters: GetterTree<State, State> & Getters = {
       : [],
   sortedTimes(state: State): string[] {
     const times =
-      state.busLines[state.selected.line][state.selected.stop] || [];
+      state.busLines?.[state.selected.line]?.[state.selected.stop] || [];
     return times.sort((a, b) => {
       const [hourA, minuteA] = a.split(":").map(Number);
       const [hourB, minuteB] = b.split(":").map(Number);
