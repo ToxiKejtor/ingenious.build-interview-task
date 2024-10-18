@@ -1,7 +1,15 @@
 <template>
   <div class="list-items">
+    <div v-if="props.searchable">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search..."
+        v-model="search"
+      />
+    </div>
     <div v-if="computedItems.length">
-      <h3>{{ title }}</h3>
+      <h3 v-if="title">{{ title }}</h3>
       <div
         class="list-items__sort d-flex align-items-center border-none"
         @click="sortable ? (sortAsc = !sortAsc) : () => {}"
@@ -25,19 +33,28 @@
 
 <script setup lang="ts">
 import { defineProps, defineEmits, computed, ref } from "vue";
+import { useDebounce } from "@/composables/debounce";
 import IconSort from "@/components/IconSort.vue";
 
 const props = defineProps<{
-  title: string;
+  title?: string;
   subtitle: string;
   items: string[];
   sortable?: boolean;
+  searchable?: boolean;
 }>();
 const sortAsc = ref(true);
 const activeItem = ref("");
+const search = ref("");
+const debouncedSearch = useDebounce(search, 300);
 
 const computedItems = computed(() => {
-  const items = props.items;
+  let items = props.items;
+  if (search.value) {
+    items = items.filter((item) =>
+      item.toLowerCase().includes(debouncedSearch.value.toLowerCase())
+    );
+  }
   return props.sortable
     ? sortAsc.value
       ? items.sort()

@@ -1,9 +1,8 @@
 <template>
-  <div>StopsView</div>
   <ListItems
     v-if="allStops?.length"
     sortable
-    title="All Stops"
+    searchable
     subtitle="Bus Stops"
     :items="allStops"
   />
