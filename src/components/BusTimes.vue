@@ -29,7 +29,8 @@
 
 <script setup lang="ts">
 import PlaceKeeper from "@/components/PlaceKeeper.vue";
-import { useStore } from "@/store";
+import { useStore } from "@/store/store";
+
 import { computed, ref } from "vue";
 import IconSort from "@/components/IconSort.vue";
 const store = useStore();

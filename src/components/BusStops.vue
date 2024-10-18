@@ -28,8 +28,9 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 import PlaceKeeper from "@/components/PlaceKeeper.vue";
-import { useStore } from "@/store";
+import { useStore } from "@/store/store";
 import IconSort from "@/components/IconSort.vue";
+import { MutationTypes } from "@/store/mutations";
 
 const store = useStore();
 
@@ -46,7 +47,7 @@ const stops = computed(() =>
 );
 
 function onStopClick(stop: string) {
-  store.commit("setSelectedStop", stop);
+  store.commit(MutationTypes.SET_SELECTED_STOP, stop);
 }
 </script>
 <style scoped>

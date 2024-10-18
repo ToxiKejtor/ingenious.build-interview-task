@@ -16,7 +16,9 @@
 
 <script setup lang="ts">
 import { computed, onMounted } from "vue";
-import { useStore } from "@/store";
+import { useStore } from "@/store/store";
+import { MutationTypes } from "@/store/mutations";
+import { ActionTypes } from "@/store/actions";
 
 const store = useStore();
 
@@ -24,12 +26,12 @@ const busLines = computed(() => store.state.busLines);
 const selectedLine = computed(() => store.state.selectedLine);
 
 function onLineClick(line: number) {
-  store.commit("setSelectedStop", "");
-  store.commit("setSelectedLine", line);
+  store.commit(MutationTypes.SET_SELECTED_STOP, "");
+  store.commit(MutationTypes.SET_SELECTED_LINE, line);
 }
 
 onMounted(async () => {
-  await store.dispatch("fetchStops");
+  await store.dispatch(ActionTypes.FETCH_STOPS);
 });
 </script>
 

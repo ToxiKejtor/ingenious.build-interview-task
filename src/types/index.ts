@@ -8,7 +8,7 @@ export interface Stop {
 
 export type Line = number;
 
-interface BusLineStops {
+export interface BusLineStops {
   [stop: string]: Time[];
 }
 export type BusLines = Record<Line, BusLineStops>;
