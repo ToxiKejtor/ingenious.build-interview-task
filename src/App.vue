@@ -19,8 +19,15 @@
   </div>
 </template>
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, onMounted } from "vue";
 import { useRouter } from "vue-router";
+import { useStore } from "@/store/store";
+import { ActionTypes } from "@/store/actions";
 const router = useRouter();
 const routes = computed(() => router.options.routes);
+const store = useStore();
+
+onMounted(async () => {
+  await store.dispatch(ActionTypes.FETCH_STOPS);
+});
 </script>

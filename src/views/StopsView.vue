@@ -1,7 +1,21 @@
 <template>
   <div>StopsView</div>
+  <ListItems
+    v-if="allStops?.length"
+    sortable
+    title="All Stops"
+    subtitle="Bus Stops"
+    :items="allStops"
+  />
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import ListItems from "@/components/ListItems.vue";
+import { useStore } from "@/store/store";
+import { computed } from "vue";
+
+const store = useStore();
+const allStops = computed(() => store.getters.sortedAllStops);
+</script>
 
 <style scoped></style>

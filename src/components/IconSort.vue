@@ -1,16 +1,16 @@
 <template>
-  <div class="wrapper px-2">
-    <div class="top"></div>
-    <div class="bottom"></div>
+  <div class="icon-sort px-2">
+    <div class="icon-sort__top"></div>
+    <div class="icon-sort__bottom"></div>
   </div>
 </template>
 <style scoped>
-.wrapper {
+.icon-sort {
   display: flex;
   flex-direction: column;
 }
 
-.top {
+.icon-sort__top {
   width: 0;
   height: 0;
   border-left: 4px solid transparent;
@@ -20,7 +20,7 @@
   margin-bottom: 2px;
 }
 
-.bottom {
+.icon-sort__bottom {
   width: 0;
   height: 0;
 

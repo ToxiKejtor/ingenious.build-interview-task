@@ -7,6 +7,7 @@ import { State } from "@/store/state";
 export enum ActionTypes {
   FETCH_STOPS = "FETCH_STOPS",
   GET_BUS_LINES = "GET_BUS_LINES",
+  GET_ALL_STOPS = "GET_ALL_STOPS",
 }
 
 type AugmentedActionContext = {
@@ -25,6 +26,10 @@ export interface Actions {
     { commit }: AugmentedActionContext,
     stops: Stop[]
   ): void;
+  [ActionTypes.GET_ALL_STOPS](
+    { commit }: AugmentedActionContext,
+    stops: Stop[]
+  ): void;
 }
 
 export const actions: ActionTree<State, State> & Actions = {
@@ -33,6 +38,7 @@ export const actions: ActionTree<State, State> & Actions = {
       .get("http://localhost:3000/stops")
       .then((response: AxiosResponse<Stop[]>) => {
         dispatch(ActionTypes.GET_BUS_LINES, response.data);
+        dispatch(ActionTypes.GET_ALL_STOPS, response.data);
       });
   },
   [ActionTypes.GET_BUS_LINES]({ commit }, stops: Stop[]) {
@@ -43,5 +49,10 @@ export const actions: ActionTree<State, State> & Actions = {
       busLines[stop.line][stop.stop].push(stop.time);
     });
     commit(MutationTypes.SET_BUS_LINES, busLines);
+  },
+  [ActionTypes.GET_ALL_STOPS]({ commit }, stops: Stop[]) {
+    console.log({ stops });
+    const uniqueStops = [...new Set(stops.map((item) => item.stop))];
+    commit(MutationTypes.SET_ALL_STOPS, uniqueStops);
   },
 };

@@ -4,6 +4,7 @@ import { State } from "./state";
 export type Getters = {
   sortedStops(state: State): string[];
   sortedTimes(state: State): string[];
+  sortedAllStops(state: State): string[];
 };
 
 export const getters: GetterTree<State, State> & Getters = {
@@ -22,4 +23,8 @@ export const getters: GetterTree<State, State> & Getters = {
     });
     return state.timesSortAsc ? sortedTimes : sortedTimes.reverse();
   },
+  sortedAllStops: (state) =>
+    state.stopsSortAsc
+      ? state.allStops.sort()
+      : state.allStops.sort().reverse(),
 };

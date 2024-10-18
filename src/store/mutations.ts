@@ -9,6 +9,7 @@ export enum MutationTypes {
   SET_SELECTED_TIME = "SET_SELECTED_TIME",
   SET_STOPS_SORT_ASC = "SET_STOPS_SORT_ASC",
   SET_TIMES_SORT_ASC = "SET_TIMES_SORT_ASC",
+  SET_ALL_STOPS = "SET_ALL_STOPS",
 }
 
 export type Mutations<S = State> = {
@@ -18,6 +19,7 @@ export type Mutations<S = State> = {
   [MutationTypes.SET_SELECTED_TIME](state: S, payload: string): void;
   [MutationTypes.SET_STOPS_SORT_ASC](state: S, payload: boolean): void;
   [MutationTypes.SET_TIMES_SORT_ASC](state: S, payload: boolean): void;
+  [MutationTypes.SET_ALL_STOPS](state: S, payload: string[]): void;
 };
 
 export const mutations: MutationTree<State> & Mutations = {
@@ -38,5 +40,8 @@ export const mutations: MutationTree<State> & Mutations = {
   },
   [MutationTypes.SET_TIMES_SORT_ASC](state, payload: boolean) {
     state.timesSortAsc = payload;
+  },
+  [MutationTypes.SET_ALL_STOPS](state, payload: string[]) {
+    state.allStops = payload;
   },
 };

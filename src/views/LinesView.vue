@@ -19,15 +19,6 @@
 import BusLines from "@/components/BusLines.vue";
 import BusStops from "@/components/BusStops.vue";
 import BusTimes from "@/components/BusTimes.vue";
-import { onMounted } from "vue";
-import { useStore } from "@/store/store";
-import { ActionTypes } from "@/store/actions";
-
-const store = useStore();
-
-onMounted(async () => {
-  await store.dispatch(ActionTypes.FETCH_STOPS);
-});
 </script>
 
 <style scoped></style>
