@@ -16,16 +16,15 @@
   border-left: 4px solid transparent;
   border-right: 4px solid transparent;
 
-  border-bottom: 5px solid grey;
-  margin-bottom: 2px;
+  border-bottom: 5px solid #b9bdca;
+  margin-bottom: 3px;
 }
 
 .icon-sort__bottom {
   width: 0;
   height: 0;
-
   border-left: 4px solid transparent;
   border-right: 4px solid transparent;
-  border-top: 5px solid grey;
+  border-top: 5px solid #b9bdca;
 }
 </style>

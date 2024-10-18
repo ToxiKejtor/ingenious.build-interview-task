@@ -1,5 +1,5 @@
 <template>
-  <div class="bus-stops">
+  <div class="bus-stops rounded">
     <ListItems
       v-if="stops?.length"
       sortable

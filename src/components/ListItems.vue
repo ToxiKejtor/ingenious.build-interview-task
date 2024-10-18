@@ -9,16 +9,18 @@
       />
     </div>
     <div v-if="computedItems.length">
-      <h3 v-if="title">{{ title }}</h3>
-      <div
-        class="list-items__sort d-flex align-items-center border-none"
-        @click="sortable ? (sortAsc = !sortAsc) : () => {}"
-      >
-        <span>{{ subtitle }}</span> <IconSort v-if="sortable" />
+      <div class="list-items__top bg-white p-4">
+        <h2 v-if="title" class="mb-2">{{ title }}</h2>
+        <h3
+          class="list-items__sort d-flex align-items-center border-none pt-4"
+          @click="sortable ? (sortAsc = !sortAsc) : () => {}"
+        >
+          <span>{{ subtitle }}</span> <IconSort v-if="sortable" />
+        </h3>
       </div>
-      <ul class="list-group">
+      <ul class="list-items__ul list-unstyled">
         <li
-          class="list-group-item list-items__li"
+          class="list-items__li px-4"
           :class="{ active: value === activeItem }"
           v-for="(value, key) in computedItems"
           :key="key"
@@ -74,8 +76,23 @@ function handleItemClick(value: string) {
 <style scoped>
 .list-items {
 }
+
+.list-items__top {
+  margin-bottom: 2px;
+}
+.list-items__ul {
+  background-color: #f8f8fb;
+}
 .list-items__li {
   cursor: pointer;
+  padding-top: 20px;
+  padding-bottom: 19px;
+  margin-bottom: 1px;
+  background-color: white;
+}
+.list-items__li.active,
+.list-items__li:hover {
+  background-color: #f8f8fb;
 }
 .list-items__sort {
   cursor: pointer;

@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-light vh-100">
+  <div class="app__wrapper vh-100">
     <div class="app__container">
       <h1 class="pb-3">Timetable</h1>
       <nav class="px-4 bg-white">
@@ -32,6 +32,9 @@ onMounted(async () => {
 });
 </script>
 <style scoped>
+.app__wrapper {
+  background-color: #f3f4f9;
+}
 .app__container {
   padding: 40px 32px;
 }
