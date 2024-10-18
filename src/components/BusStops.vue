@@ -1,5 +1,5 @@
 <template>
-  <div class="bus-stops rounded">
+  <div class="bus-stops rounded overflow-hidden">
     <ListItems
       v-if="stops?.length"
       sortable
@@ -31,6 +31,6 @@ function onStopSelected(stop: string) {
 </script>
 <style scoped>
 .bus-stops {
-  height: 300px;
+  height: 444px;
 }
 </style>

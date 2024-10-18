@@ -3,10 +3,10 @@
     <BusLines />
     <div class="py-3">
       <div class="row">
-        <div class="col">
+        <div class="col-lg">
           <BusStops />
         </div>
-        <div class="col">
+        <div class="col-lg mt-3 mt-lg-0">
           <BusTimes />
         </div>
       </div>

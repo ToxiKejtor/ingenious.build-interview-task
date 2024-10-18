@@ -1,5 +1,5 @@
 <template>
-  <div class="bus-times">
+  <div class="bus-times rounded overflow-hidden">
     <ListItems
       v-if="showTimes && times?.length"
       :title="title"
@@ -35,6 +35,6 @@ function onTimeSelected(time: string) {
 </script>
 <style scoped>
 .bus-times {
-  height: 300px;
+  height: 444px;
 }
 </style>

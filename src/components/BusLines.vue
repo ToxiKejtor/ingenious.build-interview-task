@@ -1,10 +1,10 @@
 <template>
-  <div class="bus-lines p-4 bg-white">
+  <div class="bus-lines px-4 pt-4 pb-3 bg-white rounded">
     <h2 class="mb-2">Select Bus Line</h2>
-    <ul class="btn-group bus-lines__ul list-unstyled pt-4">
+    <ul class="btn-group m-0 flex-wrap bus-lines__ul list-unstyled pt-4">
       <li v-for="(value, key) in busLines" :key="key">
         <button
-          class="btn px-3 py-2 btn-primary me-2"
+          class="btn px-3 py-2 btn-primary me-2 mb-2"
           :class="{ active: key === selectedLine }"
           @click="onLineClick(key)"
         >
@@ -16,10 +16,9 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted } from "vue";
+import { computed } from "vue";
 import { useStore } from "@/store/store";
 import { MutationTypes } from "@/store/mutations";
-import { ActionTypes } from "@/store/actions";
 
 const store = useStore();
 
@@ -29,10 +28,6 @@ const selectedLine = computed(() => store.state.selected.line);
 function onLineClick(line: number) {
   store.commit(MutationTypes.SET_SELECTED, { line, stop: "" });
 }
-
-onMounted(async () => {
-  await store.dispatch(ActionTypes.FETCH_STOPS);
-});
 </script>
 
 <style scoped>
