@@ -9,13 +9,14 @@ export type Getters = {
 
 export const getters: GetterTree<State, State> & Getters = {
   sortedStops: (state) =>
-    state.selectedLine
+    state.selected.line
       ? state.stopsSortAsc
-        ? Object.keys(state.busLines[state.selectedLine]).sort()
-        : Object.keys(state.busLines[state.selectedLine]).sort().reverse()
+        ? Object.keys(state.busLines[state.selected.line]).sort()
+        : Object.keys(state.busLines[state.selected.line]).sort().reverse()
       : [],
   sortedTimes(state: State): string[] {
-    const times = state.busLines[state.selectedLine][state.selectedStop] || [];
+    const times =
+      state.busLines[state.selected.line][state.selected.stop] || [];
     const sortedTimes = times.sort((a, b) => {
       const [hourA, minuteA] = a.split(":").map(Number);
       const [hourB, minuteB] = b.split(":").map(Number);

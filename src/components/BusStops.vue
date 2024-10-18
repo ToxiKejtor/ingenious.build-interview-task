@@ -25,18 +25,14 @@ const props = defineProps<{
   all?: boolean;
 }>();
 
-const selectedLine = computed(() => store.state.selectedLine);
+const selectedLine = computed(() => store.state.selected.line);
 const title = computed(() => `Bus line: ${selectedLine.value}`);
 const stops = computed(() =>
   props.all ? store.getters.sortedAllStops : store.getters.sortedStops
 );
 
 function onStopSelected(stop: string) {
-  store.commit(MutationTypes.SET_SELECTED_STOP, stop);
-}
-
-function onSortChange() {
-  store.commit(MutationTypes.SET_STOPS_SORT_ASC, !store.state.stopsSortAsc);
+  store.commit(MutationTypes.SET_SELECTED, { stop });
 }
 </script>
 <style scoped>

@@ -23,11 +23,10 @@ import { ActionTypes } from "@/store/actions";
 const store = useStore();
 
 const busLines = computed(() => store.state.busLines);
-const selectedLine = computed(() => store.state.selectedLine);
+const selectedLine = computed(() => store.state.selected.line);
 
 function onLineClick(line: number) {
-  store.commit(MutationTypes.SET_SELECTED_STOP, "");
-  store.commit(MutationTypes.SET_SELECTED_LINE, line);
+  store.commit(MutationTypes.SET_SELECTED, { line, stop: "" });
 }
 
 onMounted(async () => {

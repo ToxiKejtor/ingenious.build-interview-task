@@ -8,6 +8,11 @@ export interface State {
   stopsSortAsc: boolean;
   timesSortAsc: boolean;
   allStops: string[];
+  selected: {
+    line: number;
+    stop: string;
+    time: string;
+  };
 }
 
 export const state: State = {
@@ -18,4 +23,9 @@ export const state: State = {
   stopsSortAsc: true,
   timesSortAsc: true,
   allStops: [],
+  selected: {
+    line: 0,
+    stop: "",
+    time: "",
+  },
 };

@@ -2,12 +2,12 @@
   <div class="list-items">
     <div v-if="computedItems.length">
       <h3>{{ title }}</h3>
-      <button
-        class="btn d-flex align-items-center border-none"
+      <div
+        class="list-items__sort d-flex align-items-center border-none"
         @click="sortable ? (sortAsc = !sortAsc) : () => {}"
       >
         <span>{{ subtitle }}</span> <IconSort v-if="sortable" />
-      </button>
+      </div>
       <ul class="list-group">
         <li
           class="list-group-item list-items__li"
@@ -58,6 +58,9 @@ function handleItemClick(value: string) {
 .list-items {
 }
 .list-items__li {
+  cursor: pointer;
+}
+.list-items__sort {
   cursor: pointer;
 }
 </style>

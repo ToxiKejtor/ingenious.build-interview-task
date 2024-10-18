@@ -21,20 +21,16 @@ import { MutationTypes } from "@/store/mutations";
 
 const store = useStore();
 
-const selectedStop = computed(() => store.state.selectedStop);
+const selectedStop = computed(() => store.state.selected.stop);
 
 const title = computed(() => `Bus Stop: ${selectedStop.value}`);
 const showTimes = computed(
-  () => store.state.selectedStop !== "" && store.state.selectedLine
+  () => store.state.selected.stop !== "" && store.state.selected.line
 );
 const times = computed(() => store.getters.sortedTimes);
 
-function onSortChange() {
-  store.commit(MutationTypes.SET_TIMES_SORT_ASC, !store.state.timesSortAsc);
-}
-
 function onTimeSelected(time: string) {
-  store.commit(MutationTypes.SET_SELECTED_TIME, time);
+  store.commit(MutationTypes.SET_SELECTED, { time });
 }
 </script>
 <style scoped>
