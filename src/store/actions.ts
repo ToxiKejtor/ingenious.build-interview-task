@@ -51,8 +51,9 @@ export const actions: ActionTree<State, State> & Actions = {
     commit(MutationTypes.SET_BUS_LINES, busLines);
   },
   [ActionTypes.GET_ALL_STOPS]({ commit }, stops: Stop[]) {
-    console.log({ stops });
-    const uniqueStops = [...new Set(stops.map((item) => item.stop))];
+    const uniqueStops = Array.from([
+      ...new Set(stops.map((item) => item.stop)),
+    ]).sort();
     commit(MutationTypes.SET_ALL_STOPS, uniqueStops);
   },
 };

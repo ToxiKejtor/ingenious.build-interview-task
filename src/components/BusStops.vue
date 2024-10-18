@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, defineProps } from "vue";
+import { computed } from "vue";
 import PlaceKeeper from "@/components/PlaceKeeper.vue";
 import ListItems from "@/components/ListItems.vue";
 import { useStore } from "@/store/store";
@@ -21,15 +21,9 @@ import { MutationTypes } from "@/store/mutations";
 
 const store = useStore();
 
-const props = defineProps<{
-  all?: boolean;
-}>();
-
 const selectedLine = computed(() => store.state.selected.line);
 const title = computed(() => `Bus line: ${selectedLine.value}`);
-const stops = computed(() =>
-  props.all ? store.getters.sortedAllStops : store.getters.sortedStops
-);
+const stops = computed(() => store.getters.sortedStops);
 
 function onStopSelected(stop: string) {
   store.commit(MutationTypes.SET_SELECTED, { stop });

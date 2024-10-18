@@ -14,7 +14,7 @@ import { useStore } from "@/store/store";
 import { computed } from "vue";
 
 const store = useStore();
-const allStops = computed(() => store.getters.sortedAllStops);
+const allStops = computed(() => store.state.allStops);
 </script>
 
 <style scoped></style>

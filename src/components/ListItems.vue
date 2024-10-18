@@ -1,5 +1,6 @@
 <template>
   <div class="list-items">
+    <div>sortAsc: {{ sortAsc }}</div>
     <div v-if="props.searchable">
       <input
         type="text"
@@ -32,7 +33,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, defineEmits, computed, ref } from "vue";
+import { computed, defineEmits, defineProps, ref } from "vue";
 import { useDebounce } from "@/composables/debounce";
 import IconSort from "@/components/IconSort.vue";
 
@@ -50,7 +51,7 @@ const debouncedSearch = useDebounce(search, 300);
 
 const computedItems = computed(() => {
   let items = props.items;
-  if (search.value) {
+  if (debouncedSearch.value) {
     items = items.filter((item) =>
       item.toLowerCase().includes(debouncedSearch.value.toLowerCase())
     );
