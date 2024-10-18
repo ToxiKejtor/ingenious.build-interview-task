@@ -2,10 +2,16 @@
   <div class="bus-stops">
     <div v-if="stops.length">
       <h3>Bus line: {{ selectedLine }}</h3>
+
+      <button
+        class="btn d-flex align-items-center border-none"
+        @click="sortAsc = !sortAsc"
+      >
+        <span>Bus Stops</span> <IconSort />
+      </button>
       <ul class="list-group">
         <li
-          role="button"
-          class="list-group-item"
+          class="list-group-item bus-stops__li"
           :class="{ active: value === selectedStop }"
           v-for="(value, key) in stops"
           :key="key"
@@ -20,17 +26,22 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import PlaceKeeper from "@/components/PlaceKeeper.vue";
 import { useStore } from "@/store";
+import IconSort from "@/components/IconSort.vue";
 
 const store = useStore();
+
+const sortAsc = ref(true);
 
 const selectedLine = computed(() => store.state.selectedLine);
 const selectedStop = computed(() => store.state.selectedStop);
 const stops = computed(() =>
   selectedLine.value
-    ? Object.keys(store.state.busLines[selectedLine.value])
+    ? sortAsc.value
+      ? Object.keys(store.state.busLines[selectedLine.value]).sort()
+      : Object.keys(store.state.busLines[selectedLine.value]).sort().reverse()
     : []
 );
 
@@ -41,5 +52,8 @@ function onStopClick(stop: string) {
 <style scoped>
 .bus-stops {
   height: 300px;
+}
+.bus-stops__li {
+  cursor: pointer;
 }
 </style>

@@ -7,6 +7,7 @@ export interface State {
   busLines: BusLines;
   selectedLine: number;
   selectedStop: string;
+  selectedTime: string;
 }
 export const key: InjectionKey<Store<State>> = Symbol();
 export default createStore<State>({
@@ -14,6 +15,7 @@ export default createStore<State>({
     busLines: {},
     selectedLine: 0,
     selectedStop: "",
+    selectedTime: "",
   },
   getters: {},
   mutations: {
@@ -25,6 +27,9 @@ export default createStore<State>({
     },
     setSelectedStop(state: State, stop: string) {
       state.selectedStop = stop;
+    },
+    setSelectedTime(state: State, time: string) {
+      state.selectedTime = time;
     },
   },
   actions: {

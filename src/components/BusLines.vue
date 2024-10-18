@@ -24,6 +24,7 @@ const busLines = computed(() => store.state.busLines);
 const selectedLine = computed(() => store.state.selectedLine);
 
 function onLineClick(line: number) {
+  store.commit("setSelectedStop", "");
   store.commit("setSelectedLine", line);
 }
 
