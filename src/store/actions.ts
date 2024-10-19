@@ -1,6 +1,6 @@
 import { Mutations, MutationTypes } from "@/store/mutations";
 import axios, { AxiosResponse } from "axios";
-import { BusLines, Stop } from "@/types";
+import { BusLines, Status, Stop } from "@/types";
 import { ActionContext, ActionTree } from "vuex";
 import { State } from "@/store/state";
 
@@ -33,12 +33,16 @@ export interface Actions {
 }
 
 export const actions: ActionTree<State, State> & Actions = {
-  [ActionTypes.FETCH_STOPS]({ dispatch }) {
+  [ActionTypes.FETCH_STOPS]({ dispatch, commit }) {
     return axios
       .get("http://localhost:3000/stops")
       .then((response: AxiosResponse<Stop[]>) => {
         dispatch(ActionTypes.GET_BUS_LINES, response.data);
         dispatch(ActionTypes.GET_ALL_STOPS, response.data);
+        commit(MutationTypes.SET_STATUS, Status.Loaded);
+      })
+      .catch(() => {
+        commit(MutationTypes.SET_STATUS, Status.Error);
       });
   },
   [ActionTypes.GET_BUS_LINES]({ commit }, stops: Stop[]) {

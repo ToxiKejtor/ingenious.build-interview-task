@@ -5,6 +5,12 @@ export interface Stop {
   time: string;
 }
 
+export enum Status {
+  Loading = "loading",
+  Loaded = "loaded",
+  Error = "error",
+}
+
 export type Line = number;
 
 export interface BusLineStops {

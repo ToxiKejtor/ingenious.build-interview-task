@@ -1,11 +1,12 @@
 import { MutationTree } from "vuex";
 import { State } from "./state";
-import { BusLines } from "@/types";
+import { BusLines, Status } from "@/types";
 
 export enum MutationTypes {
   SET_BUS_LINES = "SET_BUS_LINES",
   SET_ALL_STOPS = "SET_ALL_STOPS",
   SET_SELECTED = "SET_SELECTED",
+  SET_STATUS = "SET_STATUS",
 }
 
 export type Mutations<S = State> = {
@@ -15,6 +16,7 @@ export type Mutations<S = State> = {
     state: S,
     payload: { line?: number; stop?: string; time?: string }
   ): void;
+  [MutationTypes.SET_STATUS](state: S, payload: Status): void;
 };
 
 export const mutations: MutationTree<State> & Mutations = {
@@ -26,5 +28,8 @@ export const mutations: MutationTree<State> & Mutations = {
   },
   [MutationTypes.SET_SELECTED](state, payload) {
     state.selected = { ...state.selected, ...payload };
+  },
+  [MutationTypes.SET_STATUS](state, payload) {
+    state.status = payload;
   },
 };

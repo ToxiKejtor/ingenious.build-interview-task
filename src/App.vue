@@ -14,7 +14,12 @@
           </li>
         </ul>
       </nav>
-      <RouterView />
+      <div v-if="isError" class="bg-white p-4">
+        <div class="alert alert-danger" role="alert">
+          Sorry, we couldn't load the data. Please try again later.
+        </div>
+      </div>
+      <RouterView v-else />
     </div>
   </div>
 </template>
@@ -24,10 +29,13 @@ import { useRouter } from "vue-router";
 import { useStore } from "@/store/store";
 import { ActionTypes } from "@/store/actions";
 import { colors } from "@/styles/variables";
+import { Status } from "@/types";
 
 const router = useRouter();
-const routes = computed(() => router.options.routes);
 const store = useStore();
+const routes = computed(() => router.options.routes);
+
+const isError = computed(() => store.state.status === Status.Error);
 
 onMounted(async () => {
   await store.dispatch(ActionTypes.FETCH_STOPS);
