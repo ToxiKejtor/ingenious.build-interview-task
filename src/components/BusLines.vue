@@ -19,6 +19,7 @@
 import { computed } from "vue";
 import { useStore } from "@/store/store";
 import { MutationTypes } from "@/store/mutations";
+import { colors } from "@/styles/variables";
 
 const store = useStore();
 
@@ -35,12 +36,13 @@ function onLineClick(line: number) {
   font-weight: 500;
 }
 .btn-primary {
-  background-color: #1952e1;
-  border-color: #1952e1;
+  background-color: v-bind(colors.blue1);
+  border-color: v-bind(colors.blue1);
 }
-.btn-primary.active {
-  background-color: #2e3e6e;
-  border-color: #2e3e6e;
+.btn-primary.active,
+.btn.btn-primary:hover {
+  background-color: v-bind(colors.blue2);
+  border-color: v-bind(colors.blue2);
 }
 
 .bus-lines__ul {

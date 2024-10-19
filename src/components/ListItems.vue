@@ -47,6 +47,7 @@ import { computed, defineEmits, defineProps, ref } from "vue";
 import { useDebounce } from "@/composables/debounce";
 import IconSort from "@/icons/IconSort.vue";
 import IconSearch from "@/icons/IconSearch.vue";
+import { colors } from "@/styles/variables";
 
 const props = defineProps<{
   title?: string;
@@ -100,12 +101,12 @@ function handleItemClick(value: string) {
 .list-items__search-input {
   width: 100%;
   padding: 8px 32px 8px 8px;
-  border: 1px solid #e5e5e5;
+  border: 1px solid v-bind(colors.grey5);
   border-radius: 4px;
 }
 
 .list-items__ul {
-  background-color: #f8f8fb;
+  background-color: v-bind(colors.grey2);
   margin: 0;
 }
 .list-items__li {
@@ -113,13 +114,13 @@ function handleItemClick(value: string) {
   padding-top: 20px;
   padding-bottom: 19px;
   margin-bottom: 1px;
-  background-color: white;
+  background-color: v-bind(colors.white);
 }
 .list-items__li.active {
-  color: #1952e1;
+  color: v-bind(colors.blue1);
 }
 .list-items__li:hover {
-  background-color: #f8f8fb;
+  background-color: v-bind(colors.grey2);
 }
 .list-items__sort {
   cursor: pointer;

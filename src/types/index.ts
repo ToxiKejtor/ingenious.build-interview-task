@@ -1,4 +1,3 @@
-export type Time = string;
 export interface Stop {
   line: number;
   stop: string;
@@ -9,6 +8,6 @@ export interface Stop {
 export type Line = number;
 
 export interface BusLineStops {
-  [stop: string]: Time[];
+  [stop: string]: string[];
 }
 export type BusLines = Record<Line, BusLineStops>;

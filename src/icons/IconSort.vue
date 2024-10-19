@@ -4,6 +4,9 @@
     <div class="icon-sort__bottom"></div>
   </div>
 </template>
+<script setup lang="ts">
+import { colors } from "@/styles/variables";
+</script>
 <style scoped>
 .icon-sort {
   display: flex;
@@ -16,7 +19,7 @@
   border-left: 4px solid transparent;
   border-right: 4px solid transparent;
 
-  border-bottom: 5px solid #b9bdca;
+  border-bottom: 5px solid v-bind(colors.grey3);
   margin-bottom: 3px;
 }
 
@@ -25,6 +28,6 @@
   height: 0;
   border-left: 4px solid transparent;
   border-right: 4px solid transparent;
-  border-top: 5px solid #b9bdca;
+  border-top: 5px solid v-bind(colors.grey3);
 }
 </style>
