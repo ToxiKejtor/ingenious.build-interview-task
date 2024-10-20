@@ -12,8 +12,10 @@ export const getters: GetterTree<State, State> & Getters = {
       ? Object.keys(state.busLines[state.selected.line]).sort()
       : [],
   sortedTimes(state: State): string[] {
-    const times =
-      state.busLines?.[state.selected.line]?.[state.selected.stop] || [];
+    const selectedLine = state.selected.line;
+    const selectedStop = state.selected.stop;
+    if (!selectedLine || !selectedStop) return [];
+    const times = state.busLines?.[selectedLine]?.[selectedStop] || [];
     return times.sort((a, b) => {
       const [hourA, minuteA] = a.split(":").map(Number);
       const [hourB, minuteB] = b.split(":").map(Number);

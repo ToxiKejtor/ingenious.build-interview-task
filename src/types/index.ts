@@ -5,15 +5,18 @@ export interface Stop {
   time: string;
 }
 
+export interface Selected {
+  line?: number;
+  stop?: string;
+  time?: string;
+}
 export enum Status {
   Loading = "loading",
   Loaded = "loaded",
   Error = "error",
 }
 
-export type Line = number;
-
 export interface BusLineStops {
   [stop: string]: string[];
 }
-export type BusLines = Record<Line, BusLineStops>;
+export type BusLines = Record<number, BusLineStops>;

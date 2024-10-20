@@ -10,7 +10,7 @@ export enum ActionTypes {
   GET_ALL_STOPS = "GET_ALL_STOPS",
 }
 
-type AugmentedActionContext = {
+export type AugmentedActionContext = {
   commit<K extends keyof Mutations>(
     key: K,
     payload: Parameters<Mutations[K]>[1]

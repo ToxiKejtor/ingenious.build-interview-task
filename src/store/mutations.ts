@@ -20,16 +20,16 @@ export type Mutations<S = State> = {
 };
 
 export const mutations: MutationTree<State> & Mutations = {
-  [MutationTypes.SET_BUS_LINES](state, payload: BusLines) {
+  [MutationTypes.SET_BUS_LINES](state: State, payload: BusLines) {
     state.busLines = payload;
   },
-  [MutationTypes.SET_ALL_STOPS](state, payload: string[]) {
+  [MutationTypes.SET_ALL_STOPS](state: State, payload: string[]) {
     state.allStops = payload;
   },
-  [MutationTypes.SET_SELECTED](state, payload) {
+  [MutationTypes.SET_SELECTED](state: State, payload) {
     state.selected = { ...state.selected, ...payload };
   },
-  [MutationTypes.SET_STATUS](state, payload) {
+  [MutationTypes.SET_STATUS](state: State, payload) {
     state.status = payload;
   },
 };

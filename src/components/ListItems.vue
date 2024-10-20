@@ -5,8 +5,8 @@
         <div class="list-items__search-group position-relative">
           <input
             class="list-items__search-input"
+            data-testid="search-input"
             type="text"
-            id="example-search-input"
             placeholder="Search..."
             v-model="search"
           />
@@ -23,6 +23,7 @@
       <h2 v-if="title" class="mb-2">{{ title }}</h2>
       <h3
         class="list-items__sort d-flex align-items-center border-none pt-4"
+        data-testid="sort"
         @click="sortable ? (sortAsc = !sortAsc) : () => {}"
       >
         <span>{{ subtitle }}</span> <IconSort v-if="sortable" />
@@ -31,6 +32,7 @@
     <ul class="list-items__ul list-unstyled flex-grow-1 overflow-auto">
       <li
         class="list-items__li px-4"
+        data-testid="list-item"
         :class="{ active: value === activeItem }"
         v-for="(value, key) in computedItems"
         :key="key"

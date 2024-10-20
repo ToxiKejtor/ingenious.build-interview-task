@@ -1,14 +1,10 @@
-import { BusLines, Status } from "@/types";
+import { BusLines, Status, Selected } from "@/types";
 
 export interface State {
   status: Status;
   busLines: BusLines;
   allStops: string[];
-  selected: {
-    line: number;
-    stop: string;
-    time: string;
-  };
+  selected: Selected;
 }
 
 export const state: State = {
