@@ -64,17 +64,13 @@ const search = ref("");
 const debouncedSearch = useDebounce(search, 300);
 
 const computedItems = computed(() => {
-  let items = props.items;
+  let items = [...props.items];
   if (debouncedSearch.value) {
     items = items.filter((item) =>
       item.toLowerCase().includes(debouncedSearch.value.toLowerCase())
     );
   }
-  return props.sortable
-    ? sortAsc.value
-      ? items.sort()
-      : items.sort().reverse()
-    : props.items;
+  return props.sortable ? (sortAsc.value ? items : items.reverse()) : items;
 });
 const emit = defineEmits<{
   (e: "itemSelected", value: string): void;

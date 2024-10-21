@@ -8,12 +8,12 @@ describe("Vuex Getters", () => {
     status: Status.Loading,
     busLines: {
       1: {
-        Narutowicza: ["16:01", "08:11", "08:01"],
-        Kopalina: ["16:02", "08:12", "08:02"],
+        Narutowicza: { order: 2, times: ["16:01", "08:11", "08:01"] },
+        Kopalina: { order: 1, times: ["16:02", "08:12", "08:02"] },
       },
       2: {
-        Jeziorko: ["16:03", "08:13", "08:03"],
-        Bartnicza: ["16:04", "08:14", "08:04"],
+        Jeziorko: { order: 2, times: ["16:03", "08:13", "08:03"] },
+        Bartnicza: { order: 1, times: ["16:04", "08:14", "08:04"] },
       },
     },
     allStops: [],
@@ -26,7 +26,6 @@ describe("Vuex Getters", () => {
 
   it("sortedStops returns sorted stops for the selected line", () => {
     const result = getters.sortedStops(state);
-    console.log({ result });
     expect(result).toEqual(["Kopalina", "Narutowicza"]);
   });
 

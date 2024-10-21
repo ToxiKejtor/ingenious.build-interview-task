@@ -17,6 +17,9 @@ export enum Status {
 }
 
 export interface BusLineStops {
-  [stop: string]: string[];
+  [stop: string]: {
+    order: number;
+    times: string[];
+  };
 }
 export type BusLines = Record<number, BusLineStops>;

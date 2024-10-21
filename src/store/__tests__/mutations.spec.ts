@@ -12,7 +12,14 @@ describe("mutations.ts", () => {
 
   it("SET_BUS_LINES", () => {
     const state = { ...initialState };
-    const payload: BusLines = { 1: { Narutowicza: ["10:00", "11:00"] } };
+    const payload: BusLines = {
+      1: {
+        Narutowicza: {
+          order: 2,
+          times: ["10:00", "11:00"],
+        },
+      },
+    };
     mutations.SET_BUS_LINES(state, payload);
     expect(state.busLines).toEqual(payload);
   });

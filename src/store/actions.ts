@@ -49,8 +49,11 @@ export const actions: ActionTree<State, State> & Actions = {
     const busLines: BusLines = {};
     stops.forEach((stop) => {
       busLines[stop.line] = busLines[stop.line] || {};
-      busLines[stop.line][stop.stop] = busLines[stop.line][stop.stop] || [];
-      busLines[stop.line][stop.stop].push(stop.time);
+      busLines[stop.line][stop.stop] = busLines[stop.line][stop.stop] || {
+        order: stop.order,
+        times: [],
+      };
+      busLines[stop.line][stop.stop].times.push(stop.time);
     });
     commit(MutationTypes.SET_BUS_LINES, busLines);
   },
