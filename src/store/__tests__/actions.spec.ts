@@ -1,18 +1,18 @@
 import { describe, it, expect, vi, Mock } from "vitest";
 import { actions, ActionTypes, AugmentedActionContext } from "@/store/actions";
 import { MutationTypes } from "@/store/mutations";
-import { Status, Stop } from "@/types";
+import { BusLines, Status, Stop } from "@/types";
 import axios from "axios";
-import { state as initialState } from "@/store/state";
+import { state as initialState, State } from "@/store/state";
 
 vi.mock("axios");
 
 describe("Vuex Actions", () => {
   const commit = vi.fn();
   const dispatch = vi.fn();
-  const state = { ...initialState };
+  const state: State = { ...initialState };
   const getters = {};
-  const rootState = { ...initialState };
+  const rootState: State = { ...initialState };
   const rootGetters = {};
   const stops: Stop[] = [
     { line: 1, stop: "A", time: "08:00", order: 1 },
@@ -57,9 +57,23 @@ describe("Vuex Actions", () => {
   it("GET_BUS_LINES action commits SET_BUS_LINES", () => {
     actions[ActionTypes.GET_BUS_LINES](mockContext, stops);
 
-    const expectedBusLines = {
-      1: { A: ["08:00"], B: ["08:10"] },
-      2: { A: ["09:00"] },
+    const expectedBusLines: BusLines = {
+      1: {
+        A: {
+          order: 1,
+          times: ["08:00"],
+        },
+        B: {
+          order: 2,
+          times: ["08:10"],
+        },
+      },
+      2: {
+        A: {
+          order: 3,
+          times: ["09:00"],
+        },
+      },
     };
 
     expect(commit).toHaveBeenCalledWith(
